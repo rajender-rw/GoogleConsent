@@ -1,5 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import CookieBanner from "./components/cookiebanner";
+import { Suspense } from "react";
+import ProgressBarProvider from "./components/ProgressBarProvider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Suspense fallback={<div>Loading...</div>}>
+        <GoogleAnalytics GA_MEASUREMENT_ID='G-0000000000' />
+      </Suspense>
+      <body className={inter.className}>
+        <Suspense>
+          <ProgressBarProvider>{children}</ProgressBarProvider>
+        </Suspense>
+        <CookieBanner />
+      </body>
     </html>
   );
 }

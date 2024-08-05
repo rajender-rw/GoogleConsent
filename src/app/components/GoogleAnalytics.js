@@ -6,11 +6,11 @@ import { useEffect } from "react";
 import {pageview} from "../lib/gtagHelper"
 
 export default function GoogleAnalytics({GA_MEASUREMENT_ID}){
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
   useEffect(() => {
-      const url = pathname + searchParams.toString()
+      const url = pathname + searchParams.toString();
   
       pageview(GA_MEASUREMENT_ID, url);
       

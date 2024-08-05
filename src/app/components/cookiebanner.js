@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link'
 import { getLocalStorage, setLocalStorage } from '../lib/storageHelper';
 import { useState, useEffect } from 'react';
 
@@ -17,9 +16,15 @@ export default function CookieBanner() {
   useEffect(() => {
     const newValue = cookieConsent ? 'granted' : 'denied'
 
-    window.gtag("consent", 'update', {
-      'analytics_storage': newValue
-    });
+   try {
+     if (window.gtag) {
+      window.gtag("consent", 'update', {
+        'analytics_storage': newValue
+      });
+     }
+   } catch (error) {
+    console.error(error);
+   }
 
     setLocalStorage("cookie_consent", cookieConsent)
 

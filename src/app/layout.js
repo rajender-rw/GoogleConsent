@@ -14,10 +14,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const GAM = process.env.GA_MEASUREMENT_ID;
   return (
     <html lang="en">
       <Suspense fallback={<div>Loading...</div>}>
-        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GA_MEASUREMENT_ID || 'G-2H7DPL0YEV'} />
+        <GoogleAnalytics/>
       </Suspense>
       <body className={inter.className}>
         <Suspense>

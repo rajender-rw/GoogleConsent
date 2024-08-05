@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Suspense fallback={<div>Loading...</div>}>
-        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GA_MEASUREMENT_ID} />
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GA_MEASUREMENT_ID || 'G-2H7DPL0YEV'} />
       </Suspense>
       <body className={inter.className}>
         <Suspense>

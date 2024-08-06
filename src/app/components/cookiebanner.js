@@ -4,27 +4,37 @@ import { getLocalStorage, setLocalStorage } from '../lib/storageHelper';
 import { useState, useEffect } from 'react';
 
 export default function CookieBanner() {
-  const [cookieConsent, setCookieConsent] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState({
+    adStorage: false,
+    adUserData: false,
+    adPersonalization: false,
+    analyticsStorage: false
+  });
 
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null)
-
-    setCookieConsent(storedCookieConsent)
+    if (storedCookieConsent) {
+      setCookieConsent(storedCookieConsent);
+    }
   }, [setCookieConsent])
 
 
   useEffect(() => {
-    const newValue = cookieConsent ? 'granted' : 'denied'
+    // const newValue = cookieConsent ? 'granted' : 'denied'
+    const consentValues = {
+      'ad_storage': cookieConsent.adStorage ? 'granted' : 'denied',
+      'ad_user_data': cookieConsent.adUserData ? 'granted' : 'denied',
+      'ad_personalization': cookieConsent.adPersonalization ? 'granted' : 'denied',
+      'analytics_storage': cookieConsent.analyticsStorage ? 'granted' : 'denied'
+    };
 
-   try {
-     if (window.gtag) {
-      window.gtag("consent", 'update', {
-        'analytics_storage': newValue
-      });
-     }
-   } catch (error) {
-    console.error(error);
-   }
+    try {
+      if (window.gtag) {
+        window.gtag("consent", 'update', consentValues);
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     setLocalStorage("cookie_consent", cookieConsent)
 
@@ -45,31 +55,25 @@ export default function CookieBanner() {
       </div>
 
       <div className="flex items-center mt-6 gap-x-4 shrink-0 lg:mt-0">
-        <button className="w-1/2 text-xs text-gray-800 underline transition-colors duration-300 md:w-auto dark:text-white dark:hover:text-gray-400 focus:outline-none  hover:bg-gray-700 px-4 py-2.5 hover:text-white rounded-lg " onClick={() => setCookieConsent(false)}>
+        <button className="w-1/2 text-xs text-gray-800 underline transition-colors duration-300 md:w-auto dark:text-white dark:hover:text-gray-400 focus:outline-none  hover:bg-gray-700 px-4 py-2.5 hover:text-white rounded-lg " onClick={() => setCookieConsent({
+          adStorage: false,
+          adUserData: false,
+          adPersonalization: false,
+          analyticsStorage: false
+        })}>
           Decline
         </button>
 
-        <button className=" text-xs w-1/2 md:w-auto font-medium bg-gray-800 rounded-lg hover:bg-gray-700 text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none" onClick={() => setCookieConsent(true)}>
+        <button className=" text-xs w-1/2 md:w-auto font-medium bg-gray-800 rounded-lg hover:bg-gray-700 text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none" onClick={() => setCookieConsent({
+          adStorage: true,
+          adUserData: true,
+          adPersonalization: true,
+          analyticsStorage: true
+        })}>
           Allow Cookies
         </button>
       </div>
     </section>
-    // old code
-    // <div classNameName={`my-10 mx-auto max-w-max md:max-w-screen-sm
-    //                 fixed bottom-0 left-0 right-0 
-    //                 flex px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  
-    //                  bg-gray-700 rounded-lg shadow`}>
 
-    //     <div classNameName='text-center'>
-    //         <Link href="/info/cookies"><p>We use <span classNameName='font-bold text-sky-400'>cookies</span> on our site.</p></Link>
-    //     </div>
-
-
-    //     <div classNameName='flex gap-2'>
-    //         <button classNameName='px-5 py-2 text-gray-300 rounded-md border-gray-900' onClick={() => setCookieConsent(false)}>Decline</button>
-    //         <button classNameName='bg-gray-900 px-5 py-2 text-white rounded-lg' onClick={() => setCookieConsent(true)}>Allow Cookies</button>
-    //     </div>   
-    // </div>
-    //  ${cookieConsent != null ? "hidden" : "flex"}
   )
 }

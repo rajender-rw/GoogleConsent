@@ -27,9 +27,12 @@ export default function GoogleAnalytics() {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('consent', 'default', {
-                    'analytics_storage': 'denied'
-                });
+                 gtag('consent', 'default', {
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'granted',
+                  'analytics_storage': 'denied'
+               });
                 
                 gtag('config', '${GAM}', {
                     page_path: window.location.pathname,

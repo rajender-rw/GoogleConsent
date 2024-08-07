@@ -8,7 +8,10 @@ export default function CookieBanner() {
     adStorage: false,
     adUserData: false,
     adPersonalization: false,
-    analyticsStorage: false
+    analyticsStorage: false,
+    functionalityStorage: false,
+    personalizationStorage: false,
+    securityStorage: false,
   });
 
   useEffect(() => {
@@ -25,7 +28,10 @@ export default function CookieBanner() {
       'ad_storage': cookieConsent.adStorage ? 'granted' : 'denied',
       'ad_user_data': cookieConsent.adUserData ? 'granted' : 'denied',
       'ad_personalization': cookieConsent.adPersonalization ? 'granted' : 'denied',
-      'analytics_storage': cookieConsent.analyticsStorage ? 'granted' : 'denied'
+      'analytics_storage': cookieConsent.analyticsStorage ? 'granted' : 'denied',
+      'functionality_storage': cookieConsent.functionalityStorage ? 'granted' : 'denied',
+      'personalization_storage': cookieConsent.personalizationStorage ? 'granted' : 'denied',
+      'security_storage': cookieConsent.securityStorage ? 'granted' : 'denied'
     };
 
     try {
@@ -59,7 +65,10 @@ export default function CookieBanner() {
           adStorage: false,
           adUserData: false,
           adPersonalization: false,
-          analyticsStorage: false
+          analyticsStorage: false,
+          functionalityStorage: false,
+          personalizationStorage: false,
+          securityStorage: false,
         })}>
           Decline
         </button>
@@ -68,7 +77,10 @@ export default function CookieBanner() {
           adStorage: true,
           adUserData: true,
           adPersonalization: true,
-          analyticsStorage: true
+          analyticsStorage: true,
+          functionalityStorage: true,
+          personalizationStorage: true,
+          securityStorage: true,
         })}>
           Allow Cookies
         </button>

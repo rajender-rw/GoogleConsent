@@ -29,11 +29,12 @@ export default function GoogleAnalytics() {
 
                  gtag('consent', 'default', {
                   'ad_storage': 'denied',
-                  'ad_user_data': 'denied',
+                  'ad_user_data': 'granted',
                   'ad_personalization': 'denied',
                   'analytics_storage': 'granted',
                   'functionality_storage': 'granted',
                   'security_storage': 'granted',
+                  'personalization_storage': 'denied',
                });
                 
                 gtag('config', '${GAM}', {

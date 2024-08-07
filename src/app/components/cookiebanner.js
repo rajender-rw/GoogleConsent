@@ -11,6 +11,7 @@ export default function CookieBanner() {
     analyticsStorage: false,
     functionalityStorage: false,
     securityStorage: false,
+    personalizationStorage: false,
   });
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function CookieBanner() {
       'analytics_storage': cookieConsent.analyticsStorage ? 'granted' : 'denied',
       'functionality_storage': cookieConsent.functionalityStorage ? 'granted' : 'denied',
       'security_storage': cookieConsent.securityStorage ? 'granted' : 'denied',
+      'personalization_storage': cookieConsent.personalizationStorage ? 'granted' : 'denied',
     };
 
     try {
@@ -66,6 +68,7 @@ export default function CookieBanner() {
           analyticsStorage: false,
           functionalityStorage: false,
           securityStorage: false,
+          personalizationStorage: false,
         })}>
           Decline
         </button>
@@ -77,6 +80,7 @@ export default function CookieBanner() {
           analyticsStorage: true,
           functionalityStorage: true,
           securityStorage: true,
+          personalizationStorage: true,
         })}>
           Allow Cookies
         </button>

@@ -31,7 +31,7 @@ export default function GoogleAnalytics() {
                   'ad_storage': 'denied',
                   'ad_user_data': 'denied',
                   'ad_personalization': 'granted',
-                  'analytics_storage': 'denied'
+                  'analytics_storage': 'granted'
                });
                 
                 gtag('config', '${GAM}', {

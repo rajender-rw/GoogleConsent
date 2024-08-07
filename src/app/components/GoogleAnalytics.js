@@ -27,15 +27,12 @@ export default function GoogleAnalytics() {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                    gtag('consent', 'default', {
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'granted',
-                    'analytics_storage': 'granted'
-                    'functionality_storage': 'granted',
-                    'personalization_storage': 'outcome',
-                    'security_storage': 'granted',
-                });
+                 gtag('consent', 'default', {
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'granted',
+                  'analytics_storage': 'denied'
+               });
                 
                 gtag('config', '${GAM}', {
                     page_path: window.location.pathname,

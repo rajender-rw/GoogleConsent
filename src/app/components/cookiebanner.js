@@ -29,7 +29,7 @@ export default function CookieBanner() {
       'ad_user_data': cookieConsent.adUserData ? 'granted' : 'denied',
       'ad_personalization': cookieConsent.adPersonalization ? 'granted' : 'denied',
       'analytics_storage': cookieConsent.analyticsStorage ? 'granted' : 'denied',
-      'functionality_storage': cookieConsent.functionalityStorage ? 'granted' : 'denied',
+      'functionality_storage': cookieConsent.functionalityStorage ? 'granted' : 'granted',
       'security_storage': cookieConsent.securityStorage ? 'granted' : 'denied',
       'personalization_storage': cookieConsent.personalizationStorage ? 'granted' : 'denied',
     };
